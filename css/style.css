@@ -8,6 +8,28 @@
     text-decoration: none;
     text-transform: uppercase;
 }
+.container form .flexbox .inputBox{
+    flex:1 1 150px;
+}
+
+.card-number-input {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .card-number-input input {
+    width: 25px;
+  }
+
+
+.card-number-input input {
+    width: 25px; /* Adjust width as needed */
+    margin-right: 10px; /* Add some spacing between the input fields */
+}
+
+.card-number-input input:last-child {
+    margin-right: 0; /* Remove margin from the last input field to prevent extra spacing */
+}
 
 .container{
     min-height: 100vh;
@@ -52,9 +74,8 @@
     gap:15px;
 }
 
-.container form .flexbox .inputBox{
-    flex:1 1 150px;
-}
+
+
 
 .container form .submit-btn{
     width: 100%;
