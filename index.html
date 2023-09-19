@@ -136,6 +136,91 @@ document.querySelectorAll('.card-number-group').forEach((input, index) => {
     };
 });
 
+
+
+
+document.querySelectorAll('.card-number-group').forEach((input, index) => {
+    input.oninput = () => {
+        const cardNumberGroups = document.querySelectorAll('.card-number-group');
+        let cardNumber = '';
+
+        cardNumberGroups.forEach((group, groupIndex) => {
+            cardNumber += group.value;
+
+            if (groupIndex === index && group.value.length === 4 && index < 3) {
+                cardNumber += ' '; // Add a space after each group of 4 digits except the last group.
+            }
+        });
+
+        document.querySelector('.card-number-box').innerText = cardNumber;
+
+        // Get the next input field
+        const nextInputField = input.nextElementSibling;
+
+        // If the current input field is full and the next input field is not, focus on the next input field
+        if (input.value.length === 4 && nextInputField && nextInputField.value.length === 0) {
+            nextInputField.focus();
+        }
+    };
+});
+
+// Get the cardholder name and expiration date input fields
+const cardHolderInput = document.querySelector('.card-holder-input');
+const monthInput = document.querySelector('.month-input');
+const yearInput = document.querySelector('.year-input');
+
+// Update the cardholder name and expiration date on the card
+cardHolderInput.oninput = () => {
+    document.querySelector('.card-holder-name').innerText = cardHolderInput.value;
+};
+
+monthInput.oninput = () => {
+    document.querySelector('.exp-month').innerText = monthInput.value;
+};
+
+yearInput.oninput = () => {
+    document.querySelector('.exp-year').innerText = yearInput.value;
+};
+
+// Validate the credit card form
+const validateCreditCardForm = () => {
+    // Validate the cardholder name
+    const cardHolderName = document.querySelector('.card-holder-input').value;
+    if (cardHolderName.length === 0) {
+        return false;
+    }
+
+    // Validate the card number
+    const cardNumber = document.querySelector('.card-number-box').innerText.replace(/ /g, '');
+    if (cardNumber.length !== 16) {
+        return false;
+    }
+
+    // Validate the expiration date
+    const month = document.querySelector('.month-input').value;
+    const year = document.querySelector('.year-input').value;
+    if (month === 'month' || year === 'year' || new Date(year, month - 1, 1) < new Date()) {
+        return false;
+    }
+
+    // Validate the CVV
+    const cvv = document.querySelector('.cvv-input').value;
+    if (cvv.length !== 3) {
+        return false;
+    }
+
+    return true;
+};
+
+// Show an alert on submit if all items are validated
+document.querySelector('form').onsubmit = (event) => {
+    if (!validateCreditCardForm()) {
+        event.preventDefault();
+        alert('Please fill out the form correctly.');
+    } else {
+        alert('Your payment was successful.');
+    }
+};
     </script>
     
     
