@@ -1,0 +1,25 @@
+
+/* Styling for the card and form */
+.card {
+    background-color: #e6e6e6;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+}
+
+.payment-form {
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+}
+
+/* Style for the submit button */
+.submit-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
