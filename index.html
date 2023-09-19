@@ -182,6 +182,24 @@ yearInput.oninput = () => {
     document.querySelector('.exp-year').innerText = yearInput.value;
 };
 
+
+  // Code to flip the card when the CVV number is entered
+const cvvInput = document.querySelector('.cvv-input');
+const cardContainer = document.querySelector('.card-container');
+
+cvvInput.oninput = () => {
+    // If the CVV input field is full, flip the card to the back
+    if (cvvInput.value.length === 3) {
+        cardContainer.classList.add('flip');
+    }
+};
+
+cvvInput.onblur = () => {
+    // When the CVV input field loses focus, flip the card back to the front
+    cardContainer.classList.remove('flip');
+};
+
+
 // Validate the credit card form
 const validateCreditCardForm = () => {
     // Validate the cardholder name
